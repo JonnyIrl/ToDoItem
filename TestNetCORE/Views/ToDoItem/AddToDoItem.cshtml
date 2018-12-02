@@ -1,0 +1,51 @@
+﻿@model TestNetCORE.Models.ToDoItem
+
+<form asp-action="AddToDoItem" method="post" class="form-horizontal" role="form">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+    @*Title*@
+    <div class="form-group">
+        <label style="color: white" asp-for="Title" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Description*@
+    <div class="form-group">
+        <label style="color: white" asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <textarea asp-for="Description" class="form-control"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*StartDateTime*@
+    <div class="form-group">
+        <label style="color: white" asp-for="StartDateTime" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="StartDateTime" class="form-control" />
+            <span asp-validation-for="StartDateTime" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*EndDateTime*@
+    <div class="form-group">
+        <label style="color: white" asp-for="EndDateTime" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="EndDateTime" class="form-control" />
+            <span asp-validation-for="EndDateTime" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Submit*@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Add Task" />
+        </div>
+    </div>
+
+</form>

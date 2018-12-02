@@ -1,0 +1,48 @@
+﻿@using System.Security.Claims
+@using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal
+@model ToDoItemViewModel
+
+<h2 style="color: white">@Model.Title</h2>
+
+<table class="table" style="color: white">
+    <thead>
+    <tr>
+        <td>&#x2714;</td>
+        <td>Complete</td>
+        <td>Title</td>
+        <td>Description</td>
+        <td>Due</td>
+        <td>Last Time Updated</td>
+    </tr>
+    </thead>
+@foreach (var task in Model.Tasks)
+{
+    if (task.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+    {
+        if (task.CompletedDateTime == null || task.CompletedDateTime == DateTime.MinValue)
+        {
+            <tr>
+                <td>
+                    <form asp-action="ToDoItemCheck" method="POST">
+                        <input data-val="true"
+                               id="isItemChecked"
+                               name="isItemChecked"
+                               type="checkbox"
+                               value="true"/>
+                        <input name="isItemChecked" type="hidden" value="false"/>
+                    </form>
+                </td>
+                <td>
+                    <a asp-controller="ToDoItem" asp-action="ToDoItemComplete" asp-route-id="@task.Id">Complete</a>
+                </td>
+                <td>@task.Title</td>
+                <td>@task.Description</td>
+                <td>@task.EndDateTime</td>
+                <td>@task.LastTimeModified</td>
+            </tr>
+        }
+    }
+}
+</table>
+
+
